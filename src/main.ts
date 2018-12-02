@@ -25,6 +25,9 @@ PIXI.loader
     .add("data/textures/cottage.png")
     .add("data/textures/skeleton1.png")
     .add("data/textures/skeleton2.png")
+    .add("data/textures/necrowalk1.png")
+    .add("data/textures/necrowalk2.png")
+    .add("data/textures/necrowalk3.png")
     .load(function () {
         main(<HTMLElement>document.getElementById("canvasContainer"));
     });
@@ -42,7 +45,7 @@ function main(canvasContainer: HTMLElement) {
         width: 1280,
         height: 720,
     });
-    app.renderer.backgroundColor = 999999; // -> hexadecimal color is dark torquoise?
+    app.renderer.backgroundColor = 0x100419;
     app.renderer.view.style.position = "absolute";
     app.renderer.view.style.display = "block"
     app.renderer.autoResize = true;

@@ -4,7 +4,7 @@ import { BoardhouseUI } from "./boardhouseui";
 import { controlSystem, renderSystem, collisionSystem, timerSystem, animationSystem, velocitySystem } from "./coresystems";
 import { setSprite, setHitBoxGraphic, setHurtBoxGraphic } from "./helpers";
 import { initializeControls, HurtTypes, initializeAnimation } from "./corecomponents";
-import playerAnim from "../data/animations/player.json";
+import necroAnim from "../data/animations/necro.json";
 import { spawnPeasants } from "./spawnpeasants";
 import { coordinateMonsters } from "./coordinatemonsters";
 import { spawnBackgroundElements } from "./spawnbackgroundelements";
@@ -29,10 +29,10 @@ export class GameState implements State {
         // set up entities
         let player = new Entity();
         player.pos = { x: 0, y: 525 };
-        player.sprite = setSprite("data/textures/girl.png", player.pos.x, player.pos.y, this.layer1, 8);
+        player.sprite = setSprite("data/textures/necrowalk1.png", player.pos.x, player.pos.y, this.layer1, 8);
         player.control = initializeControls();
         // player.monster = {};
-        // player.anim = initializeAnimation("walk", playerAnim);
+        player.anim = initializeAnimation("walk", necroAnim);
         player.vel = { left: false, right: false, up: false, down: false, speed: 2 };
         // player.hitBox ={ collidesWith: [HurtTypes.test], height: player.sprite.height, width: player.sprite.width, onHit: function() { console.log("hit")}};
         // player.graphic = setHitBoxGraphic(stage, player.sprite.width, player.sprite.height)

@@ -1,0 +1,22 @@
+{
+    "walk": [
+        {
+            "ticks": 15,
+            "texture": "data/textures/necrowalk1.png",
+            "nextFrame": 1
+       },
+        {
+            "ticks": 15,
+            "texture": "data/textures/necrowalk2.png",
+            "nextFrame": 2
+       },
+        {
+            "ticks": 15,
+            "texture": "data/textures/necrowalk3.png",
+            "nextFrame": 0
+       }
+    ],
+    "idle":[
+
+    ]
+}
