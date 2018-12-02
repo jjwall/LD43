@@ -8,6 +8,8 @@ import {
      TimerComponent,
 } from "./corecomponents";
 
+import { MonsterComponent } from './monstercomponent';
+
 /**
  * Class to represent an entity in the game. No constructor as an entity can
  * comprise of as many or as little of the properties listed here. Each component
@@ -24,4 +26,5 @@ export class Entity {
      public hitBox: HitBoxComponent;
      public hurtBox: HurtBoxComponent;
      public timer: TimerComponent;
+     public monster: MonsterComponent;
 }
