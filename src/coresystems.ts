@@ -85,7 +85,7 @@ export function controlSystem(ents: Readonly<Entity>[], stage: PIXI.Container) {
                 attack.pos = {x: ent.pos.x + 100, y: ent.pos.y + 50};
                 attack.graphic = setHitBoxGraphic(stage, 50, 50);
                 attack.hitBox = { 
-                    collidesWith: [HurtTypes.test], 
+                    collidesWith: [HurtTypes.peasant], 
                     height: 50, 
                     width: 50, 
                     onHit: function() { console.log("hit")
