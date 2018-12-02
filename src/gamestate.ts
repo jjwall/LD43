@@ -16,12 +16,18 @@ import { coordinateMonsters } from "./coordinatemonsters";
 export class GameState implements State {
     public entities: Entity[];
     public rootWidget: BoardhouseUI.Widget;
+    public layer1: PIXI.Container;
+    public layer2: PIXI.Container;
     constructor(stage: PIXI.Container){
         this.entities = [];
+        this.layer1 = new PIXI.Container();
+        this.layer2 = new PIXI.Container();
+        this.layer1.addChild(this.layer2);
+        stage.addChild(this.layer1);
         // set up entities
         let player = new Entity();
         player.pos = { x: 0, y: 525 };
-        player.sprite = setSprite("data/textures/girl.png", player.pos.x, player.pos.y, stage, 8);
+        player.sprite = setSprite("data/textures/girl.png", player.pos.x, player.pos.y, this.layer1, 8);
         player.control = initializeControls();
         // player.monster = {};
         // player.anim = initializeAnimation("walk", playerAnim);
@@ -29,11 +35,12 @@ export class GameState implements State {
         // player.hitBox ={ collidesWith: [HurtTypes.test], height: player.sprite.height, width: player.sprite.width, onHit: function() { console.log("hit")}};
         // player.graphic = setHitBoxGraphic(stage, player.sprite.width, player.sprite.height)
 
+
         this.entities.push(player);
         this.rootWidget = new BoardhouseUI.Widget();
     }
 
-    public update(stateStack: State[], stage: PIXI.Container) {
+    public update(stateStack: State[], stage: PIXI.Container){//, layer2: PIXI.Container) {
         // call core systems
         controlSystem(this.entities, stage);
         velocitySystem(this.entities);
@@ -42,7 +49,7 @@ export class GameState implements State {
         timerSystem(this.entities);
 
         // call miscellaneous free functions / systems
-        spawnPeasants(this.entities, stage);
+        spawnPeasants(this.entities, this.layer2);
         coordinateMonsters(this.entities);
     }
 

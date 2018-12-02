@@ -6,7 +6,7 @@
  * @param stage PIXI.Container i.e. the stage.
  * @param pixelRatio Number of pixels to scale texture's height and width by.
  */
-export function setSprite(texturePath: string, xPos: number, yPos: number, stage: PIXI.Container, pixelRatio: number) : PIXI.Sprite {
+export function setSprite(texturePath: string, xPos: number, yPos: number, layer: PIXI.Container, pixelRatio: number) : PIXI.Sprite {
     let sprite = new PIXI.Sprite(
         PIXI.loader.resources[texturePath].texture
     );
@@ -16,7 +16,7 @@ export function setSprite(texturePath: string, xPos: number, yPos: number, stage
     sprite.y = yPos;
     sprite.width *= pixelRatio;
     sprite.height *= pixelRatio;
-    stage.addChild(sprite);
+    layer.addChild(sprite);
 
     return sprite;
 }
