@@ -1,0 +1,32 @@
+{
+  "name": "ld43",
+  "version": "1.0.0",
+  "description": "Game for my LD43 submission.",
+  "main": "server.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jjwall/LD43.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jjwall/LD43/issues"
+  },
+  "homepage": "https://github.com/jjwall/LD43#readme",
+  "devDependencies": {
+    "@types/pixi.js": "^4.8.3",
+    "ts-loader": "^5.3.0",
+    "typescript": "^3.1.6",
+    "webpack": "^4.26.0",
+    "webpack-cli": "^3.1.2"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "http": "0.0.0",
+    "path": "^0.12.7",
+    "pixi.js": "^4.8.2"
+  }
+}
