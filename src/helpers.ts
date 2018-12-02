@@ -1,3 +1,5 @@
+import { AnimationComponent } from "./corecomponents";
+
 /**
  * Helper method to add a sprite to the stage.
  * @param texturePath Path to texture file. Starts at project root.
@@ -19,6 +21,12 @@ export function setSprite(texturePath: string, xPos: number, yPos: number, layer
     layer.addChild(sprite);
 
     return sprite;
+}
+
+export function changeSequence(sequence: string, anim: AnimationComponent, frame: number = 0) : AnimationComponent {
+    anim.sequence = sequence;
+    anim.frame = frame;
+    return anim;
 }
 
 /**

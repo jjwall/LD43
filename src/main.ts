@@ -28,6 +28,11 @@ PIXI.loader
     .add("data/textures/necrowalk1.png")
     .add("data/textures/necrowalk2.png")
     .add("data/textures/necrowalk3.png")
+    .add("data/textures/necroattack1.png")
+    .add("data/textures/necroattack2.png")
+    .add("data/textures/unholyblast1.png")
+    .add("data/textures/unholyblast2.png")
+    .add("data/textures/unholyblast3.png")
     .load(function () {
         main(<HTMLElement>document.getElementById("canvasContainer"));
     });

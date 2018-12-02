@@ -28,6 +28,7 @@ export interface ControllableComponent {
     attacked: boolean;
     left: boolean;
     right: boolean;
+    animEnd: boolean;
 }
 
 /**
@@ -94,6 +95,7 @@ export function initializeControls(): ControllableComponent {
         attacked: false,
         left: false,
         right: false,
+        animEnd: true,
     };
 }
 

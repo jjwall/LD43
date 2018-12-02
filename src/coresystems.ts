@@ -1,6 +1,7 @@
 import { Entity } from "./entity";
-import { setHitBoxGraphic } from "./helpers";
-import { HurtTypes } from "./corecomponents";
+import { setHitBoxGraphic, changeSequence, setSprite } from "./helpers";
+import { HurtTypes, initializeAnimation } from "./corecomponents";
+import unholyBlastAnim from "../data/animations/unholyblast.json";
 
 /**
  * Rudimentary velocity implementation... will replace directions with
@@ -67,7 +68,7 @@ export function collisionSystem(ents: Readonly<Entity>[]) {
     });
 }
 
-export function controlSystem(ents: Readonly<Entity>[], stage: PIXI.Container) {
+export function controlSystem(ents: Entity[], stage: PIXI.Container) {
     ents.forEach(ent => {
         if (ent.control !== undefined && ent.vel !== undefined && ent.pos !== undefined) {
             if (ent.control.left) {
@@ -85,10 +86,14 @@ export function controlSystem(ents: Readonly<Entity>[], stage: PIXI.Container) {
             // test attack
             if (ent.control.attack && !ent.control.attacked) {
                 ent.control.attacked = true;
+                ent.control.animEnd = false;
                 let attack = new Entity();
                 attack.timer = { ticks: 15 };
-                attack.pos = {x: ent.pos.x + 100, y: ent.pos.y + 50};
-                attack.graphic = setHitBoxGraphic(stage, 50, 50);
+                attack.vel = ent.vel;
+                attack.pos = {x: ent.pos.x + 120, y: ent.pos.y + 50};
+                // attack.graphic = setHitBoxGraphic(stage, 50, 50);
+                attack.sprite = setSprite("data/textures/unholyblast3.png", attack.pos.x, attack.pos.y, stage, 8);
+                attack.anim = initializeAnimation("attack", unholyBlastAnim);
                 attack.hitBox = { 
                     collidesWith: [HurtTypes.peasant], 
                     height: 50, 
@@ -96,13 +101,22 @@ export function controlSystem(ents: Readonly<Entity>[], stage: PIXI.Container) {
                     onHit: function() { console.log("hit")
                 }};
                 ents.push(attack);
+
+                // set attack animation
+                ent.anim = changeSequence("attack", ent.anim);
             }
 
             if (ent.control.attacked) {
                 ent.control.attackTimer++;
             }
 
-            if (ent.control.attackTimer > 75) {
+            if (ent.control.attackTimer > 15 && !ent.control.animEnd) {
+                ent.control.animEnd = true;
+                
+                // reset animation to walk
+                ent.anim = changeSequence("walk", ent.anim);
+            }
+            if (ent.control.attackTimer > 100) {
                 ent.control.attacked = false;
                 ent.control.attackTimer = 0;
             }
