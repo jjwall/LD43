@@ -36,6 +36,11 @@ export function animationSystem(ents: Readonly<Entity>[]) : void {
                 ent.anim.frame = ent.anim.obj[ent.anim.sequence][ent.anim.frame]["nextFrame"];
                 ent.anim.ticks = ent.anim.obj[ent.anim.sequence][ent.anim.frame]["ticks"];
                 ent.sprite.texture = PIXI.utils.TextureCache[ent.anim.obj[ent.anim.sequence][ent.anim.frame]["texture"]];
+
+                // make sure scale mode has been set for new texture
+                if (ent.sprite.texture.baseTexture.scaleMode !== PIXI.SCALE_MODES.NEAREST) {
+                    ent.sprite.texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
+                }
             }
         }
     });

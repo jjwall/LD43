@@ -1,0 +1,14 @@
+{
+    "walk": [
+        {
+            "ticks": 40,
+            "texture": "data/textures/skeleton1.png",
+            "nextFrame": 1
+       },
+        {
+            "ticks": 40,
+            "texture": "data/textures/skeleton2.png",
+            "nextFrame": 0
+       }
+    ]
+}

@@ -1,7 +1,5 @@
-/// <reference path="./types/json.d.ts" />
 import { State } from "./state";
 import { Entity } from "./entity";
-// import { renderSystem } from "./rendersystem";
 import { BoardhouseUI } from "./boardhouseui";
 import { controlSystem, renderSystem, collisionSystem, timerSystem, animationSystem, velocitySystem } from "./coresystems";
 import { setSprite, setHitBoxGraphic, setHurtBoxGraphic } from "./helpers";
@@ -9,6 +7,7 @@ import { initializeControls, HurtTypes, initializeAnimation } from "./corecompon
 import playerAnim from "../data/animations/player.json";
 import { spawnPeasants } from "./spawnpeasants";
 import { coordinateMonsters } from "./coordinatemonsters";
+import { spawnBackgroundElements } from "./spawnbackgroundelements";
 
 /**
  * GameState that handles updating of all game-related systems.
@@ -16,13 +15,16 @@ import { coordinateMonsters } from "./coordinatemonsters";
 export class GameState implements State {
     public entities: Entity[];
     public rootWidget: BoardhouseUI.Widget;
-    public layer1: PIXI.Container;
-    public layer2: PIXI.Container;
+    public layer1: PIXI.Container; // for player
+    public layer2: PIXI.Container; // for game objects
+    public layer3: PIXI.Container; // for background elements
     constructor(stage: PIXI.Container){
         this.entities = [];
         this.layer1 = new PIXI.Container();
         this.layer2 = new PIXI.Container();
+        this.layer3 = new PIXI.Container();
         this.layer1.addChild(this.layer2);
+        this.layer2.addChild(this.layer3);
         stage.addChild(this.layer1);
         // set up entities
         let player = new Entity();
@@ -51,6 +53,7 @@ export class GameState implements State {
         // call miscellaneous free functions / systems
         spawnPeasants(this.entities, this.layer2);
         coordinateMonsters(this.entities);
+        spawnBackgroundElements(this.entities, this.layer3);
     }
 
     public render(canvas: HTMLCanvasElement, stage: PIXI.Container) {

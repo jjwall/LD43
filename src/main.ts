@@ -1,3 +1,4 @@
+/// <reference path="./types/json.d.ts" />
 import * as PIXI from "pixi.js";
 import { State } from "./state";
 import { last } from "./helpers";
@@ -21,6 +22,9 @@ import { MainMenuState } from "./mainmenustate";
 PIXI.loader
     .add("data/textures/ship.png")
     .add("data/textures/girl.png")
+    .add("data/textures/cottage.png")
+    .add("data/textures/skeleton1.png")
+    .add("data/textures/skeleton2.png")
     .load(function () {
         main(<HTMLElement>document.getElementById("canvasContainer"));
     });
