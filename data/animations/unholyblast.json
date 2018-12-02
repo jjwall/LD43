@@ -1,0 +1,20 @@
+
+{
+    "attack": [
+        {
+            "ticks": 5,
+            "texture": "data/textures/unholyblast3.png",
+            "nextFrame": 1
+       },
+        {
+            "ticks": 5,
+            "texture": "data/textures/unholyblast2.png",
+            "nextFrame": 2
+       },
+        {
+            "ticks": 5,
+            "texture": "data/textures/unholyblast1.png",
+            "nextFrame": 0
+       }
+    ]
+}

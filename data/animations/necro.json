@@ -16,7 +16,16 @@
             "nextFrame": 0
        }
     ],
-    "idle":[
-
+    "attack":[
+        {
+            "ticks": 15,
+            "texture": "data/textures/necroattack1.png",
+            "nextFrame": 1
+       },
+        {
+            "ticks": 15,
+            "texture": "data/textures/necroattack2.png",
+            "nextFrame": 0
+       }
     ]
 }
