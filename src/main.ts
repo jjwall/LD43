@@ -20,6 +20,7 @@ import { MainMenuState } from "./mainmenustate";
 
 // Load all png files and call main when finished.
 PIXI.loader
+    .add("data/textures/background.png")
     .add("data/textures/ship.png")
     .add("data/textures/girl.png")
     .add("data/textures/cottage.png")
@@ -33,6 +34,8 @@ PIXI.loader
     .add("data/textures/unholyblast1.png")
     .add("data/textures/unholyblast2.png")
     .add("data/textures/unholyblast3.png")
+    .add("data/textures/holyblast.png")
+    .add("data/textures/peasant1idle1.png")
     .load(function () {
         main(<HTMLElement>document.getElementById("canvasContainer"));
     });

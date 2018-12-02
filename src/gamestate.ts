@@ -26,6 +26,8 @@ export class GameState implements State {
         this.layer1.addChild(this.layer2);
         this.layer2.addChild(this.layer3);
         stage.addChild(this.layer1);
+        let background = setSprite("data/textures/background.png", 0, 0, this.layer3, 1);
+        this.layer3.addChild(background);
         // set up entities
         let player = new Entity();
         player.pos = { x: 0, y: 525 };
@@ -37,6 +39,12 @@ export class GameState implements State {
         // player.hitBox ={ collidesWith: [HurtTypes.test], height: player.sprite.height, width: player.sprite.width, onHit: function() { console.log("hit")}};
         // player.graphic = setHitBoxGraphic(stage, player.sprite.width, player.sprite.height)
 
+
+        let testBlast = new Entity();
+        testBlast.pos = { x: 500, y: 0 }
+        testBlast.sprite = setSprite("data/textures/holyblast.png", player.pos.x, player.pos.y, this.layer1, 8);
+        testBlast.timer = { ticks: 5 };
+        this.entities.push(testBlast);
 
         this.entities.push(player);
         this.rootWidget = new BoardhouseUI.Widget();
