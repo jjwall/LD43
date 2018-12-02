@@ -20,20 +20,62 @@ export function coordinateMonsters(ents: Entity[]) {
     });
 
     for (let i = 0; i < monsters.length; i++) {
-        if (!monsters[i].monster.following) {
+        // if a monster isn't attacking or following (just spawned), then move
+        // the monster to the left until he is behind the player
+        if (!monsters[i].monster.following) {// && !monsters[i].monster.attacking) {
             monsters[i].vel.left = true;
         }
         else {
-            // if (i === 0) {
-            monsters[i].vel = player.vel;
+            // reduce ticks
+            monsters[i].monster.ticksUntilFollow--;
+
+            // if ticks are 0, then begin to follow
+            if (monsters[i].monster.ticksUntilFollow <= 0) {
+                monsters[i].vel = monsters[i].monster.followList[0];
+                // remove first element of follow list array
+                monsters[i].monster.followList.shift();
+            }
+
+            // if first monster, set follow list to follow player
+            if (i === 0) {
+                // explicity set so as to not accidently box vel
+                monsters[i].monster.followList.push({
+                    left: player.vel.left,
+                    right: player.vel.right,
+                    up: player.vel.up,
+                    down: player.vel.down,
+                    speed: player.vel.speed,
+                });
+
+                // to reduce encroaching
+                if (monsters[i].pos.x > player.pos.x - 100) {
+                    monsters[i].pos.x-=1;
+                }
+            }
+            else { // else set to follow next monster in line
+                // explicity set so as to not accidently box vel
+                monsters[i].monster.followList.push({
+                    left: monsters[i-1].vel.left,
+                    right: monsters[i-1].vel.right,
+                    up: monsters[i-1].vel.up,
+                    down: monsters[i-1].vel.down,
+                    speed: monsters[i-1].vel.speed,
+                });
+
+                // to reduce encroaching
+                if (monsters[i].pos.x > monsters[i-1].pos.x - 100) {
+                    monsters[i].pos.x-=1;
+                }
+            }
         }
-        if (i === 0) { // if first monster follow player
+
+        if (i === 0) { // if first monster have monster come right behind player to follow
             if (monsters[i].pos.x < player.pos.x - 100) {
                 monsters[i].monster.following = true;
                 monsters[i].vel.left = false;
             }
         }
-        else { // follow next monster in line
+        else { // otherwise have monster come next in line to follow
             if (monsters[i].pos.x < monsters[i-1].pos.x - 100) {
                 monsters[i].monster.following = true;
                 monsters[i].vel.left = false;
