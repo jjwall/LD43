@@ -38,7 +38,7 @@ export function launchHolyBlasts(ents: Entity[], layer: PIXI.Container) {
                     ent.holyKnight.randomBlastRange = Math.floor(Math.random() * (500 - 0 + 1)) + 0;
                     // set blast warning
                     let warning = new Entity();
-                    warning.pos = { x: ent.pos.x - ent.holyKnight.randomBlastRange + 12, y: 0 };
+                    warning.pos = { x: ent.pos.x - ent.holyKnight.randomBlastRange + 12, y: 200 };
                     warning.sprite = setSprite("data/textures/warning1.png", warning.pos.x, 0, layer, 4);
                     // add warning anim
                     warning.timer = { ticks: 50 };

@@ -71,13 +71,13 @@ export function collisionSystem(ents: Readonly<Entity>[]) {
 export function controlSystem(ents: Entity[], stage: PIXI.Container) {
     ents.forEach(ent => {
         if (ent.control !== undefined && ent.vel !== undefined && ent.pos !== undefined) {
-            if (ent.control.left) {
+            if (ent.control.left && ent.pos.x >= 0) {
                 ent.vel.left = true;
             }
             else {
                 ent.vel.left = false;
             }
-            if (ent.control.right) {
+            if (ent.control.right && ent.pos.x <= 1280 - ent.sprite.width) {
                 ent.vel.right = true;
             }
             else {
@@ -98,8 +98,10 @@ export function controlSystem(ents: Entity[], stage: PIXI.Container) {
                     collidesWith: [HurtTypes.peasant], 
                     height: 50, 
                     width: 50, 
-                    onHit: function() { console.log("hit")
-                }};
+                    onHit: function() {
+                        // do something
+                    }
+                };
                 ents.push(attack);
 
                 // set attack animation
