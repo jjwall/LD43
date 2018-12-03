@@ -9,6 +9,7 @@ import {
 } from "./corecomponents";
 
 import { MonsterComponent } from './monstercomponent';
+import { HolyKnightComponent } from './holyknightcomponent';
 
 /**
  * Class to represent an entity in the game. No constructor as an entity can
@@ -27,4 +28,5 @@ export class Entity {
      public hurtBox: HurtBoxComponent;
      public timer: TimerComponent;
      public monster: MonsterComponent;
+     public holyKnight: HolyKnightComponent;
 }

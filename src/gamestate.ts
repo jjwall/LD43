@@ -8,6 +8,8 @@ import necroAnim from "../data/animations/necro.json";
 import { spawnPeasants } from "./spawnpeasants";
 import { coordinateMonsters } from "./coordinatemonsters";
 import { spawnBackgroundElements } from "./spawnbackgroundelements";
+import { spawnHolyKnights } from "./spawnholyknights";
+import { launchHolyBlasts } from "./launchholyblasts";
 
 /**
  * GameState that handles updating of all game-related systems.
@@ -40,11 +42,11 @@ export class GameState implements State {
         // player.graphic = setHitBoxGraphic(stage, player.sprite.width, player.sprite.height)
 
 
-        let testBlast = new Entity();
-        testBlast.pos = { x: 500, y: 0 }
-        testBlast.sprite = setSprite("data/textures/holyblast.png", player.pos.x, player.pos.y, this.layer1, 8);
-        testBlast.timer = { ticks: 5 };
-        this.entities.push(testBlast);
+        // let testBlast = new Entity();
+        // testBlast.pos = { x: 500, y: 0 }
+        // testBlast.sprite = setSprite("data/textures/holyblast.png", player.pos.x, player.pos.y, this.layer1, 8);
+        // testBlast.timer = { ticks: 5 };
+        // this.entities.push(testBlast);
 
         this.entities.push(player);
         this.rootWidget = new BoardhouseUI.Widget();
@@ -60,6 +62,8 @@ export class GameState implements State {
 
         // call miscellaneous free functions / systems
         spawnPeasants(this.entities, this.layer2);
+        spawnHolyKnights(this.entities, this.layer2);
+        launchHolyBlasts(this.entities, this.layer1);
         coordinateMonsters(this.entities);
         spawnBackgroundElements(this.entities, this.layer3);
     }

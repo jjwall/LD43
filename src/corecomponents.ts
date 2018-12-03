@@ -80,6 +80,7 @@ export interface TimerComponent {
  */
 export enum HurtTypes {
     peasant,
+    holyKnight,
     // ..
 }
 
