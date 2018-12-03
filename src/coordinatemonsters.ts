@@ -1,13 +1,13 @@
 import { Entity } from "./entity";
 import { HurtTypes } from "./corecomponents";
-import { clearEntity } from "./helpers";
+import { clearEntity, setSprite } from "./helpers";
 
 /**
  * We assume here that monsters are in order
  * with player being the first monster
  * @param ents
  */
-export function coordinateMonsters(ents: Entity[]) {
+export function coordinateMonsters(ents: Entity[], layer: PIXI.Container) {
     let player: Entity;
     let monsters: Entity[] = [];
 
@@ -30,6 +30,24 @@ export function coordinateMonsters(ents: Entity[]) {
         else {
             // reduce ticks
             monsters[i].monster.ticksUntilFollow--;
+
+            if (!player.control.monsterSent && i === 0) {
+                const rdySignal = new Entity();
+                rdySignal.pos = { x: monsters[i].pos.x + 55, y: monsters[i].pos.y - 45};
+                rdySignal.vel = monsters[i].vel;
+                rdySignal.sprite = setSprite("data/textures/readysignal.png", rdySignal.pos.x, rdySignal.pos.y, layer, 8);
+                rdySignal.timer = { ticks: 1};
+                ents.push(rdySignal);
+            }
+
+            if (player.control.monsterSent && i === 0) {
+                const rdySignal = new Entity();
+                rdySignal.pos = { x: monsters[i].pos.x + 55, y: monsters[i].pos.y - 45};
+                rdySignal.vel = monsters[i].vel;
+                rdySignal.sprite = setSprite("data/textures/notreadysignal.png", rdySignal.pos.x, rdySignal.pos.y, layer, 8);
+                rdySignal.timer = { ticks: 1};
+                ents.push(rdySignal);
+            }
 
             if (player.control.sendMonster && !player.control.monsterSent) {
                 if (i === 0) {

@@ -61,7 +61,7 @@ export class GameState implements State {
         spawnPeasants(this.entities, this.layer2);
         spawnHolyKnights(this.entities, this.layer2);
         launchHolyBlasts(this.entities, this.layer1);
-        coordinateMonsters(this.entities);
+        coordinateMonsters(this.entities, this.layer2);
         spawnBackgroundElements(this.entities, this.layer3);
 
         // clean up entities that are no longer in the scene
