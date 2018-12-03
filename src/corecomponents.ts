@@ -19,6 +19,13 @@ export interface VelocityComponent {
 }
 
 /**
+ * Component for health.
+ */
+export interface HealthComponent {
+    hitPoints: number;
+}
+
+/**
  * Controllable component.
  */
 export interface ControllableComponent {

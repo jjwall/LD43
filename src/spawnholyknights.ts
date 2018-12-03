@@ -3,7 +3,7 @@ import { setSprite, setHurtBoxGraphic, clearEntity } from "./helpers";
 import { HurtTypes } from "./corecomponents";
 
 export function spawnHolyKnights(ents: Entity[], layer: PIXI.Container) {
-    const randomNum = Math.floor(Math.random() * (750 - 0 + 1)) + 0;
+    const randomNum = Math.floor(Math.random() * (250 - 0 + 1)) + 0;
 
     if (randomNum === 112) {
         let knight = new Entity();

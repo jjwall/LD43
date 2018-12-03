@@ -56,11 +56,11 @@ function main(canvasContainer: HTMLElement) {
     let mainMenuState = new MainMenuState(stateStack, app.stage);
     stateStack.push(mainMenuState);
 
-    let fps: number = 0;
-    let totalTime: number = 0;
-    let currentTime: number = 0;
-    let fpsWidget = BoardhouseUI.CreateWidget();
-    fpsWidget.setText("FPS:");
+    // let fps: number = 0;
+    // let totalTime: number = 0;
+    // let currentTime: number = 0;
+    // let fpsWidget = BoardhouseUI.CreateWidget();
+    // fpsWidget.setText("FPS:");
 
     // set up event listeners
     setEventListeners(app.renderer.view, stateStack);
@@ -76,17 +76,17 @@ function main(canvasContainer: HTMLElement) {
         }
 
         // log FPS
-        fpsWidget.setText("FPS: " + Math.round(fps));
-        BoardhouseUI.ReconcilePixiDom(fpsWidget, app.stage);
+        // fpsWidget.setText("FPS: " + Math.round(fps));
+        // BoardhouseUI.ReconcilePixiDom(fpsWidget, app.stage);
     }, 16);
 
 
     // render update loop
     function renderLoop(timeStamp: number) {
         requestAnimationFrame(renderLoop);
-        currentTime = timeStamp - totalTime;
-        totalTime = timeStamp;
-        fps = 1 / (currentTime / 1000);
+        // currentTime = timeStamp - totalTime;
+        // totalTime = timeStamp;
+        // fps = 1 / (currentTime / 1000);
 
         if (stateStack.length > 0) {
             // call render on last element in state stack

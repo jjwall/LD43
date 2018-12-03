@@ -6,6 +6,7 @@ import {
      HitBoxComponent,
      HurtBoxComponent,
      TimerComponent,
+     HealthComponent,
 } from "./corecomponents";
 
 import { MonsterComponent } from './monstercomponent';
@@ -20,6 +21,7 @@ import { HolyKnightComponent } from './holyknightcomponent';
 export class Entity {
      public pos: PositionComponent;
      public vel: VelocityComponent;
+     public health: HealthComponent;
      public sprite: PIXI.Sprite;
      public anim: AnimationComponent;
      public graphic: PIXI.Graphics;
