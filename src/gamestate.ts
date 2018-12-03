@@ -43,10 +43,10 @@ export class GameState implements State {
         player.health = { hitPoints: 100 };
         player.hurtBox = { type: HurtTypes.player, height: player.sprite.height, width: player.sprite.width - 40, 
             onHurt: function() {
-                player.health.hitPoints -= 10;
-                label.setText("HP: " + player.health.hitPoints);
+                player.health.hitPoints -= 4;
+                // label.setText("HP: " + player.health.hitPoints);
                 healthBar.destroy();
-                const newWidth = 200 * (player.health.hitPoints / 100);
+                const newWidth = 1260 * (player.health.hitPoints / 100);
                 healthBar = new PIXI.Graphics();
                 healthBar.beginFill(0x660000);
                 healthBar.drawRect(10,10, newWidth, 50);
@@ -76,22 +76,23 @@ export class GameState implements State {
         this.entities.push(player);
 
         // set up UI
-        let healthBarContainer = new PIXI.Graphics();
-        healthBarContainer.lineStyle(4, 0xE0FFFF, 1);
-        healthBarContainer.drawRect(10, 10, 200, 50);
-        stage.addChild(healthBarContainer);
+        // let healthBarContainer = new PIXI.Graphics();
+        // healthBarContainer.lineStyle(4, 0xE0FFFF, 1);
+        // healthBarContainer.drawRect(10, 10, 1260, 50);
+        // stage.addChild(healthBarContainer);
         let healthBar = new PIXI.Graphics();
         healthBar.beginFill(0x660000);
-        healthBar.drawRect(10,10, 200, 50);
+        healthBar.drawRect(10,10, 1260, 50);
         healthBar.endFill();
         stage.addChild(healthBar);
         
-        let label = BoardhouseUI.CreateWidget();
-        label.setText("HP: " + player.health.hitPoints);
+        // let label = BoardhouseUI.CreateWidget();
+        // label.setText("HP: " + player.health.hitPoints);
 
-        label.left = 20;
-        label.top = 20;
-        this.rootWidget = label;
+        // label.left = 20;
+        // label.top = 20;
+        // this.rootWidget = label;
+        this.rootWidget = new BoardhouseUI.Widget();
     }
 
     public update(stateStack: State[], stage: PIXI.Container){//, layer2: PIXI.Container) {
