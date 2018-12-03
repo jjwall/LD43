@@ -1,5 +1,5 @@
 import { Entity } from "./entity";
-import { setSprite, setHurtBoxGraphic } from "./helpers";
+import { setSprite, setHurtBoxGraphic, clearEntity } from "./helpers";
 import { HurtTypes } from "./corecomponents";
 
 export function spawnHolyKnights(ents: Entity[], layer: PIXI.Container) {
@@ -13,9 +13,7 @@ export function spawnHolyKnights(ents: Entity[], layer: PIXI.Container) {
         knight.vel = { left: true, right: false, up: false, down: false, speed: 1 };
         knight.hurtBox = { type: HurtTypes.holyKnight, height: knight.sprite.height, width: knight.sprite.width, 
             onHurt: function() { 
-                knight.sprite.destroy();
-                knight.graphic.destroy();
-                ents.splice(ents.indexOf(knight), 1);
+                clearEntity(ents, knight);
             }
         };
 

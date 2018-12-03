@@ -120,6 +120,16 @@ export function controlSystem(ents: Entity[], stage: PIXI.Container) {
                 ent.control.attacked = false;
                 ent.control.attackTimer = 0;
             }
+
+            // send monster
+            if (ent.control.monsterSent) {
+               ent.control.monsterAttackTimer++;
+            }
+
+            if (ent.control.monsterAttackTimer > 250) {
+                ent.control.monsterSent = false;
+                ent.control.monsterAttackTimer = 0;
+            }
         }
     });
 }

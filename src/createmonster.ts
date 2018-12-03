@@ -10,7 +10,7 @@ export function createMonster(ents: Entity[], posX: number, posY: number, stage:
     monster.vel = { left: false, right: false, up: false, down: false, speed: 3 }
     monster.sprite = setSprite("data/textures/skeleton1.png", posX, posY, stage, 8);
     monster.anim = initializeAnimation("walk", skeletonAnim);
-    monster.monster = { following: false, attacking: false, ticksUntilFollow: 30, followList: [] };
+    monster.monster = { following: false, ticksUntilFollow: 30, followList: [] };
         monster.hurtBox = { type: HurtTypes.monster, height: monster.sprite.height, width: monster.sprite.width, 
             onHurt: function() {
                 clearEntity(ents, monster);

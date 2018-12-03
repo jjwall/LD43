@@ -29,6 +29,9 @@ export interface ControllableComponent {
     left: boolean;
     right: boolean;
     animEnd: boolean;
+    sendMonster: boolean;
+    monsterSent: boolean;
+    monsterAttackTimer: number;
 }
 
 /**
@@ -99,6 +102,9 @@ export function initializeControls(): ControllableComponent {
         left: false,
         right: false,
         animEnd: true,
+        sendMonster: false,
+        monsterSent: false,
+        monsterAttackTimer: 0,
     };
 }
 

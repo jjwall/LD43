@@ -42,11 +42,20 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: State[]
             });
         }
 
-        if (e.keyCode === 90) { // spacebar
+        if (e.keyCode === 90) { // z key
             // handle ui events first then pass to controls
             last(stateStack).entities.forEach(ent=> {
                 if (ent.control !== undefined) {
                     ent.control.attack = true;
+                }
+            });
+        }
+
+        if (e.keyCode === 88) { // x key
+            // handle ui events first then pass to controls
+            last(stateStack).entities.forEach(ent=> {
+                if (ent.control !== undefined) {
+                    ent.control.sendMonster = true;
                 }
             });
         }
@@ -70,11 +79,20 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: State[]
             });
         }
 
-        if (e.keyCode === 90) { // spacebar
+        if (e.keyCode === 90) { // z key
             // handle ui events first then pass to controls
             last(stateStack).entities.forEach(ent=> {
                 if (ent.control !== undefined) {
                     ent.control.attack = false;
+                }
+            });
+        }
+
+        if (e.keyCode === 88) { // x key
+            // handle ui events first then pass to controls
+            last(stateStack).entities.forEach(ent=> {
+                if (ent.control !== undefined) {
+                    ent.control.sendMonster = false;
                 }
             });
         }

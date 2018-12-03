@@ -1,4 +1,6 @@
 import { Entity } from "./entity";
+import { HurtTypes } from "./corecomponents";
+import { clearEntity } from "./helpers";
 
 /**
  * We assume here that monsters are in order
@@ -28,6 +30,23 @@ export function coordinateMonsters(ents: Entity[]) {
         else {
             // reduce ticks
             monsters[i].monster.ticksUntilFollow--;
+
+            if (player.control.sendMonster && !player.control.monsterSent) {
+                if (i === 0) {
+                    player.control.monsterSent = true;
+                    monsters[i].vel = { right: true, left: false, up: false, down: false, speed: 3 };
+                    // don't want the monster in any new monster list so set the monster component to undefined
+                    monsters[i].monster = undefined;
+                    // set hitBox:
+                    monsters[i].hitBox = { collidesWith: [HurtTypes.holyKnight], height: monsters[i].sprite.height, width: monsters[i].sprite.width, 
+                        onHit: function() { 
+                            clearEntity(ents, monsters[i]);
+                            // big unholy explosions
+                        }
+                    };
+                    continue;
+                }
+            }
 
             // if ticks are 0, then begin to follow
             if (monsters[i].monster.ticksUntilFollow <= 0) {
