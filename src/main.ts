@@ -35,6 +35,7 @@ PIXI.loader
     .add("data/textures/unholyblast2.png")
     .add("data/textures/unholyblast3.png")
     .add("data/textures/holyblast.png")
+    .add("data/textures/warning1.png")
     .add("data/textures/peasant1idle1.png")
     .load(function () {
         main(<HTMLElement>document.getElementById("canvasContainer"));
