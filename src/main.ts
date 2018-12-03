@@ -6,18 +6,6 @@ import { setEventListeners } from "./seteventlisteners";
 import { BoardhouseUI } from "./boardhouseui";
 import { MainMenuState } from "./mainmenustate";
 
-// TODO: Add unit tests.
-// TODO: Add systems for current core components.
-// >> position system, velocity system
-// TODO: Add event listeners for key events (controls)
-// TODO: Write animation engine.
-// TODO: Write virtual DOM framework for UI components.
-// TODO: Create level editor.
-// Stretch goals:
-// Screen shake
-// Particle effects
-// Scene transitions
-
 // Load all png files and call main when finished.
 PIXI.loader
     .add("data/textures/background.png")

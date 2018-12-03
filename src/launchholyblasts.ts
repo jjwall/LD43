@@ -5,7 +5,7 @@ import { HurtTypes } from "./corecomponents";
 export function launchHolyBlasts(ents: Entity[], layer: PIXI.Container) {
     ents.forEach(ent => {
         if (ent.holyKnight !== undefined && ent.pos !== undefined && ent.vel !== undefined) {
-            let randomNum = Math.floor(Math.random() * (750 - 0 + 1)) + 0;
+            let randomNum = Math.floor(Math.random() * (350 - 0 + 1)) + 0;
 
             if (ent.holyKnight.isAttacking) {
                 ent.holyKnight.attackTicks--;

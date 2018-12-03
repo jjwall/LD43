@@ -10,6 +10,7 @@ import { coordinateMonsters } from "./coordinatemonsters";
 import { spawnBackgroundElements } from "./spawnbackgroundelements";
 import { spawnHolyKnights } from "./spawnholyknights";
 import { launchHolyBlasts } from "./launchholyblasts";
+import { cleanUpEntites } from "./cleanupentities";
 
 /**
  * GameState that handles updating of all game-related systems.
@@ -37,12 +38,12 @@ export class GameState implements State {
         player.control = initializeControls();
         player.anim = initializeAnimation("walk", necroAnim);
         player.vel = { left: false, right: false, up: false, down: false, speed: 2 };
-        player.hurtBox = { type: HurtTypes.player, height: player.sprite.height, width: player.sprite.width, 
+        player.hurtBox = { type: HurtTypes.player, height: player.sprite.height, width: player.sprite.width - 40, 
             onHurt: function() {
                 console.log("game over");
             }
         }
-        player.graphic = setHurtBoxGraphic(stage, player.sprite.width, player.sprite.height);
+        player.graphic = setHurtBoxGraphic(stage, player.hurtBox.width, player.hurtBox.height);
 
         this.entities.push(player);
         this.rootWidget = new BoardhouseUI.Widget();
@@ -62,6 +63,9 @@ export class GameState implements State {
         launchHolyBlasts(this.entities, this.layer1);
         coordinateMonsters(this.entities);
         spawnBackgroundElements(this.entities, this.layer3);
+
+        // clean up entities that are no longer in the scene
+        cleanUpEntites(this.entities);
     }
 
     public render(canvas: HTMLCanvasElement, stage: PIXI.Container) {

@@ -1,5 +1,5 @@
 import { Entity } from "./entity";
-import { setSprite, setHurtBoxGraphic } from "./helpers";
+import { setSprite, setHurtBoxGraphic, clearEntity } from "./helpers";
 import { HurtTypes } from "./corecomponents";
 import { createMonster } from "./createmonster";
 
@@ -12,9 +12,7 @@ export function spawnPeasants(ents: Entity[], stage: PIXI.Container) {
         peasant.sprite = setSprite("data/textures/peasant1idle1.png", peasant.pos.x, peasant.pos.y, stage, 8);
         peasant.hurtBox = { type: HurtTypes.peasant, height: peasant.sprite.height, width: peasant.sprite.width, 
             onHurt: function() { 
-                peasant.sprite.destroy();
-                peasant.graphic.destroy();
-                ents.splice(ents.indexOf(peasant), 1);
+                clearEntity(ents, peasant);
                 let newMonster = createMonster(ents, peasant.pos.x, peasant.pos.y, stage);
                 ents.push(newMonster);
             }

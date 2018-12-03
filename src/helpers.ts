@@ -1,4 +1,5 @@
 import { AnimationComponent } from "./corecomponents";
+import { Entity } from "./entity";
 
 /**
  * Helper method to add a sprite to the stage.
@@ -21,6 +22,17 @@ export function setSprite(texturePath: string, xPos: number, yPos: number, layer
     layer.addChild(sprite);
 
     return sprite;
+}
+
+export function clearEntity(ents: Entity[], entToClear: Entity) {
+    if (entToClear.sprite !== undefined) {
+        entToClear.sprite.destroy();
+    }
+    if (entToClear.graphic !== undefined) {
+        entToClear.graphic.destroy();
+    }
+
+    ents.splice(ents.indexOf(entToClear), 1);
 }
 
 export function changeSequence(sequence: string, anim: AnimationComponent, frame: number = 0) : AnimationComponent {

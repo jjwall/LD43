@@ -21,6 +21,5 @@ export function spawnHolyKnights(ents: Entity[], layer: PIXI.Container) {
 
         knight.holyKnight = { isAttacking: false, attackTicks: 50, randomBlastRange: 0 };
         ents.push(knight);
-
     }
 };
