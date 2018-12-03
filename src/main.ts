@@ -27,6 +27,7 @@ PIXI.loader
     .add("data/textures/peasant1idle1.png")
     .add("data/textures/readysignal.png")
     .add("data/textures/notreadysignal.png")
+    .add("data/textures/sendmonster.png")
     .load(function () {
         main(<HTMLElement>document.getElementById("canvasContainer"));
     });

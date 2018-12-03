@@ -31,6 +31,7 @@ export function coordinateMonsters(ents: Entity[], layer: PIXI.Container) {
             // reduce ticks
             monsters[i].monster.ticksUntilFollow--;
 
+            // set ready signal
             if (!player.control.monsterSent && i === 0) {
                 const rdySignal = new Entity();
                 rdySignal.pos = { x: monsters[i].pos.x + 55, y: monsters[i].pos.y - 45};
@@ -40,6 +41,7 @@ export function coordinateMonsters(ents: Entity[], layer: PIXI.Container) {
                 ents.push(rdySignal);
             }
 
+            // set unready signal
             if (player.control.monsterSent && i === 0) {
                 const rdySignal = new Entity();
                 rdySignal.pos = { x: monsters[i].pos.x + 55, y: monsters[i].pos.y - 45};
@@ -51,6 +53,14 @@ export function coordinateMonsters(ents: Entity[], layer: PIXI.Container) {
 
             if (player.control.sendMonster && !player.control.monsterSent) {
                 if (i === 0) {
+                    // set send signal
+                    const sendSignal = new Entity();
+                    sendSignal.pos = { x: player.pos.x + 75, y: player.pos.y };
+                    sendSignal.vel = player.vel;
+                    sendSignal.sprite = setSprite("data/textures/sendmonster.png", sendSignal.pos.x, sendSignal.pos.y, layer, 8);
+                    sendSignal.timer = { ticks: 15 };
+                    ents.push(sendSignal);
+
                     player.control.monsterSent = true;
                     monsters[i].vel = { right: true, left: false, up: false, down: false, speed: 3 };
                     // don't want the monster in any new monster list so set the monster component to undefined
