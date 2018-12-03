@@ -51,6 +51,11 @@ export function coordinateMonsters(ents: Entity[]) {
                 if (monsters[i].pos.x > player.pos.x - 100) {
                     monsters[i].pos.x-=1;
                 }
+                // if monster in front got popped by holy blast, move this one up a bit
+                // or has been sent out to attack
+                if (monsters[i].pos.x < player.pos.x - 150) {
+                    monsters[i].pos.x+=1;
+                }
             }
             else { // else set to follow next monster in line
                 // explicity set so as to not accidently box vel
@@ -65,6 +70,11 @@ export function coordinateMonsters(ents: Entity[]) {
                 // to reduce encroaching
                 if (monsters[i].pos.x > monsters[i-1].pos.x - 100) {
                     monsters[i].pos.x-=1;
+                }
+                // if monster in front got popped by holy blast, move this one up a bit
+                // or has been sent out to attack
+                if (monsters[i].pos.x < monsters[i-1].pos.x - 150) {
+                    monsters[i].pos.x+=1;
                 }
             }
         }
