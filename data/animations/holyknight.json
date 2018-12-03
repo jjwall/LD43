@@ -1,0 +1,26 @@
+{
+    "walk": [
+        {
+            "ticks": 15,
+            "texture": "data/textures/knightwalk1.png",
+            "nextFrame": 1
+       },
+        {
+            "ticks": 15,
+            "texture": "data/textures/knightwalk2.png",
+            "nextFrame": 0
+       }
+    ],
+    "attack": [
+        {
+            "ticks": 25,
+            "texture": "data/textures/knightattack2.png",
+            "nextFrame": 1
+       },
+        {
+            "ticks": 25,
+            "texture": "data/textures/knightattack1.png",
+            "nextFrame": 0
+       }
+    ]
+}

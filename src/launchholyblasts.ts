@@ -1,13 +1,16 @@
 import { Entity } from "./entity";
-import { setSprite } from "./helpers";
-import { HurtTypes } from "./corecomponents";
+import { setSprite, changeSequence } from "./helpers";
+import { HurtTypes, initializeAnimation } from "./corecomponents";
+import knightAnim from "../data/animations/holyknight.json";
 
 export function launchHolyBlasts(ents: Entity[], layer: PIXI.Container) {
     ents.forEach(ent => {
-        if (ent.holyKnight !== undefined && ent.pos !== undefined && ent.vel !== undefined) {
+        if (ent.holyKnight !== undefined && ent.pos !== undefined && ent.vel !== undefined && ent.anim !== undefined) {
             let randomNum = Math.floor(Math.random() * (350 - 0 + 1)) + 0;
 
             if (ent.holyKnight.isAttacking) {
+                // if (ent.holyKnight.attackTicks === 50) {
+                // }
                 ent.holyKnight.attackTicks--;
 
                 // send attack out at tick = 5
@@ -27,14 +30,22 @@ export function launchHolyBlasts(ents: Entity[], layer: PIXI.Container) {
                 }
 
                 if (ent.holyKnight.attackTicks <= 0) {
+                    ent.anim = changeSequence("walk", ent.anim);
                     ent.holyKnight.attackTicks = 50;
                     ent.holyKnight.isAttacking = false;
                     ent.vel.speed = 1;
                 }
+
+                // if (ent.holyKnight.attackTicks > 15 && !ent.holyKnight.attackAnimEnd) {
+                //     ent.holyKnight.attackAnimEnd = true;
+                //     ent.anim = changeSequence("walk", ent.anim);
+                // }
             }
             else {
                 if (randomNum === 77) {
+                    // ent.anim = initializeAnimation("attack", knightAnim);
                     ent.holyKnight.isAttacking = true;
+                    // ent.holyKnight.attackAnimEnd = false;
                     ent.holyKnight.randomBlastRange = Math.floor(Math.random() * (500 - 0 + 1)) + 0;
                     // set blast warning
                     let warning = new Entity();
@@ -46,6 +57,7 @@ export function launchHolyBlasts(ents: Entity[], layer: PIXI.Container) {
 
                     ent.vel.speed = 0.3;
                     // set anim
+                    ent.anim = changeSequence("attack", ent.anim);
                 }
             }
         }

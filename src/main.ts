@@ -28,6 +28,10 @@ PIXI.loader
     .add("data/textures/readysignal.png")
     .add("data/textures/notreadysignal.png")
     .add("data/textures/sendmonster.png")
+    .add("data/textures/knightwalk1.png")
+    .add("data/textures/knightwalk2.png")
+    .add("data/textures/knightattack1.png")
+    .add("data/textures/knightattack2.png")
     .load(function () {
         main(<HTMLElement>document.getElementById("canvasContainer"));
     });
