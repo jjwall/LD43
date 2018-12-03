@@ -15,7 +15,7 @@ export function spawnPeasants(ents: Entity[], stage: PIXI.Container) {
                 peasant.sprite.destroy();
                 peasant.graphic.destroy();
                 ents.splice(ents.indexOf(peasant), 1);
-                let newMonster = createMonster(peasant.pos.x, peasant.pos.y, stage);
+                let newMonster = createMonster(ents, peasant.pos.x, peasant.pos.y, stage);
                 ents.push(newMonster);
             }
         };

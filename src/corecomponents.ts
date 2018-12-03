@@ -79,6 +79,8 @@ export interface TimerComponent {
  * as long as they are properly set in Hit/Hurt Box "collidesWith" property.
  */
 export enum HurtTypes {
+    player,
+    monster,
     peasant,
     holyKnight,
     // ..

@@ -1,5 +1,6 @@
 import { Entity } from "./entity";
 import { setSprite } from "./helpers";
+import { HurtTypes } from "./corecomponents";
 
 export function launchHolyBlasts(ents: Entity[], layer: PIXI.Container) {
     ents.forEach(ent => {
@@ -14,6 +15,11 @@ export function launchHolyBlasts(ents: Entity[], layer: PIXI.Container) {
                     let holyBlast = new Entity();
                     holyBlast.pos = {x: ent.pos.x - ent.holyKnight.randomBlastRange, y: 0 };
                     holyBlast.sprite = setSprite("data/textures/holyblast.png", holyBlast.pos.x, holyBlast.pos.y, layer, 8);
+                    holyBlast.hitBox = { collidesWith: [HurtTypes.player, HurtTypes.monster], height: holyBlast.sprite.height, width: holyBlast.sprite.width, 
+                        onHit: function() { 
+                            // big holy explosions
+                        }
+                    };
                     holyBlast.timer = { ticks: 5 };
                     // set hitbox
 

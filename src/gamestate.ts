@@ -35,18 +35,14 @@ export class GameState implements State {
         player.pos = { x: 0, y: 525 };
         player.sprite = setSprite("data/textures/necrowalk1.png", player.pos.x, player.pos.y, this.layer1, 8);
         player.control = initializeControls();
-        // player.monster = {};
         player.anim = initializeAnimation("walk", necroAnim);
         player.vel = { left: false, right: false, up: false, down: false, speed: 2 };
-        // player.hitBox ={ collidesWith: [HurtTypes.test], height: player.sprite.height, width: player.sprite.width, onHit: function() { console.log("hit")}};
-        // player.graphic = setHitBoxGraphic(stage, player.sprite.width, player.sprite.height)
-
-
-        // let testBlast = new Entity();
-        // testBlast.pos = { x: 500, y: 0 }
-        // testBlast.sprite = setSprite("data/textures/holyblast.png", player.pos.x, player.pos.y, this.layer1, 8);
-        // testBlast.timer = { ticks: 5 };
-        // this.entities.push(testBlast);
+        player.hurtBox = { type: HurtTypes.player, height: player.sprite.height, width: player.sprite.width, 
+            onHurt: function() {
+                console.log("game over");
+            }
+        }
+        player.graphic = setHurtBoxGraphic(stage, player.sprite.width, player.sprite.height);
 
         this.entities.push(player);
         this.rootWidget = new BoardhouseUI.Widget();
