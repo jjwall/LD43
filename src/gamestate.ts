@@ -108,6 +108,20 @@ export class GameState implements State {
             this.entities.push(road);
             offsetX += 160;
         }
+
+        // starting cottages
+        let cottage1 = new Entity();
+        cottage1.pos = { x: 800, y: 305 }
+        cottage1.sprite = setSprite("data/textures/cottage.png", cottage1.pos.x, cottage1.pos.y, this.layer3, 8);
+        cottage1.vel = { left: true, right: false, up: false, down: false, speed: 0.3 }
+
+        let cottage2 = new Entity();
+        cottage2.pos = { x: 1000, y: 305 }
+        cottage2.sprite = setSprite("data/textures/cottage.png", cottage2.pos.x, cottage2.pos.y, this.layer3, 8);
+        cottage2.vel = { left: true, right: false, up: false, down: false, speed: 0.3 }
+
+        this.entities.push(cottage1);
+        this.entities.push(cottage2);
         
         // let label = BoardhouseUI.CreateWidget();
         // label.setText("HP: " + player.health.hitPoints);
