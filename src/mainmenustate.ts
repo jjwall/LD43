@@ -47,6 +47,10 @@ export class MainMenuState implements State {
         label.top = 10;
 
         startButton.onClick = function() {
+            let music:HTMLAudioElement = new Audio("data/audio/necro.mp3");
+            music.play();
+            music.volume = 0.5;
+            music.loop = true;
             // set up game state
             let gameState = new GameState(stateStack, stage);
 
