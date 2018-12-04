@@ -3,7 +3,7 @@ import { setSprite, setHurtBoxGraphic, clearEntity } from "./helpers";
 import { HurtTypes, initializeAnimation } from "./corecomponents";
 import knightAnim from "../data/animations/holyknight.json";
 
-export function spawnHolyKnights(ents: Entity[], layer: PIXI.Container) {
+export function spawnHolyKnights(ents: Entity[], layer: PIXI.Container, score: { value: number }) {
     const randomNum = Math.floor(Math.random() * (250 - 0 + 1)) + 0;
 
     if (randomNum === 112) {
@@ -16,6 +16,7 @@ export function spawnHolyKnights(ents: Entity[], layer: PIXI.Container) {
         knight.hurtBox = { type: HurtTypes.holyKnight, height: knight.sprite.height, width: knight.sprite.width, 
             onHurt: function() { 
                 clearEntity(ents, knight);
+                score.value += 250;
             }
         };
 

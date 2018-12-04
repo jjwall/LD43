@@ -18,6 +18,7 @@ import { createMonster } from "./createmonster";
  * GameState that handles updating of all game-related systems.
  */
 export class GameState implements State {
+    public score: { value: number };
     public entities: Entity[];
     public rootWidget: BoardhouseUI.Widget;
     public layer1: PIXI.Container; // for player
@@ -28,6 +29,7 @@ export class GameState implements State {
         this.entities = [];
         // let ents = this.entities;
         this.roadTicker = {ticks: 0};
+        this.score = {value: 0};
         this.layer1 = new PIXI.Container();
         this.layer2 = new PIXI.Container();
         this.layer3 = new PIXI.Container();
@@ -142,13 +144,16 @@ export class GameState implements State {
 
         // call miscellaneous free functions / systems
         spawnPeasants(this.entities, this.layer2);
-        spawnHolyKnights(this.entities, this.layer2);
+        spawnHolyKnights(this.entities, this.layer2, this.score);
         launchHolyBlasts(this.entities, this.layer1);
         coordinateMonsters(this.entities, this.layer2);
         spawnBackgroundElements(this.entities, this.layer3, this.roadTicker);
 
         // clean up entities that are no longer in the scene
         cleanUpEntites(this.entities);
+
+        // increment score
+        this.score.value++;
     }
 
     public render(canvas: HTMLCanvasElement, stage: PIXI.Container) {

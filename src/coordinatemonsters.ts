@@ -70,8 +70,16 @@ export function coordinateMonsters(ents: Entity[], layer: PIXI.Container) {
                         onHit: function() { 
                             clearEntity(ents, monsters[i]);
                             // big unholy explosions
+                            let hurtSound = new Audio("./data/audio/hurt.wav");
+                            hurtSound.play();
+                            hurtSound.volume = .7;
                         }
                     };
+
+                    // send sound
+                    let sendSound = new Audio("./data/audio/send.wav");
+                    sendSound.play();
+                    sendSound.volume = 1;
                     continue;
                 }
             }

@@ -21,12 +21,19 @@ export function launchHolyBlasts(ents: Entity[], layer: PIXI.Container) {
                     holyBlast.hitBox = { collidesWith: [HurtTypes.player, HurtTypes.monster], height: holyBlast.sprite.height, width: holyBlast.sprite.width, 
                         onHit: function() { 
                             // big holy explosions
+                            let hurtSound = new Audio("./data/audio/hurt.wav");
+                            hurtSound.play();
+                            hurtSound.volume = .7;
                         }
                     };
                     holyBlast.timer = { ticks: 5 };
                     // set hitbox
 
                     ents.push(holyBlast);
+
+                    let holyBlastSound = new Audio("./data/audio/holyblast.wav");
+                    holyBlastSound.play();
+                    holyBlastSound.volume = .5;
                 }
 
                 if (ent.holyKnight.attackTicks <= 0) {

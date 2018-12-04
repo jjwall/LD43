@@ -100,9 +100,16 @@ export function controlSystem(ents: Entity[], stage: PIXI.Container) {
                     width: 50, 
                     onHit: function() {
                         // do something
+                        let hurtSound = new Audio("./data/audio/hurt.wav");
+                        hurtSound.play();
+                        hurtSound.volume = .7;
                     }
                 };
                 ents.push(attack);
+
+                let attackSound = new Audio("./data/audio/attack.wav");
+                attackSound.play();
+                attackSound.volume = 0.5;
 
                 // set attack animation
                 ent.anim = changeSequence("attack", ent.anim);
