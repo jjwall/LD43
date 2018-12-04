@@ -50,7 +50,7 @@ function main(canvasContainer: HTMLElement) {
         width: 1280,
         height: 720,
     });
-    app.renderer.backgroundColor = 0x100419;
+    app.renderer.backgroundColor = 0x45283c;
     app.renderer.view.style.position = "absolute";
     app.renderer.view.style.display = "block"
     app.renderer.autoResize = true;
