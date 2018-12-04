@@ -10,7 +10,7 @@ import { setSprite, clearStage } from "./helpers";
 export class LoseState implements State {
     public entities: Entity[];
     public rootWidget: BoardhouseUI.Widget;
-    constructor(stateStack: State[], stage: PIXI.Container) {
+    constructor(stateStack: State[], stage: PIXI.Container, score: {value: number}) {
         this.entities = [];
 
         let resetButton = BoardhouseUI.CreateWidget({
@@ -29,6 +29,20 @@ export class LoseState implements State {
         resetButton.appendChild(label);
         label.left = 45;
         label.top = 10;
+
+        let scoreLabel = BoardhouseUI.CreateWidget();
+        scoreLabel.setText("Your score: " + score.value, new PIXI.TextStyle({
+            fill: "white",
+            strokeThickness: 4,
+            dropShadow: true,
+            dropShadowColor: "#000000",
+            dropShadowBlur: 4,
+            dropShadowAngle: Math.PI / 6,
+            dropShadowDistance: 6,
+        }));
+        label.appendChild(scoreLabel);
+        scoreLabel.top = -75;
+        scoreLabel.left = -60;
 
         resetButton.onClick = function() {
             // set up game state

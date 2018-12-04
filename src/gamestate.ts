@@ -27,6 +27,7 @@ export class GameState implements State {
     public roadTicker: {ticks: number};
     constructor(stateStack: State[], stage: PIXI.Container){
         this.entities = [];
+        let _this = this;
         // let ents = this.entities;
         this.roadTicker = {ticks: 0};
         this.score = {value: 0};
@@ -59,7 +60,7 @@ export class GameState implements State {
                 stage.addChild(healthBar);
 
                 if (player.health.hitPoints <= 0) {
-                    let loseState = new LoseState(stateStack, stage);
+                    let loseState = new LoseState(stateStack, stage, _this.score);
 
                     // remove all containers from rootWidget before pushing new state
                     // console.log("clearing stage...");
