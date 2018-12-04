@@ -12,6 +12,7 @@ import { spawnHolyKnights } from "./spawnholyknights";
 import { launchHolyBlasts } from "./launchholyblasts";
 import { cleanUpEntites } from "./cleanupentities";
 import { LoseState } from "./losestate";
+import { createMonster } from "./createmonster";
 
 /**
  * GameState that handles updating of all game-related systems.
@@ -67,13 +68,18 @@ export class GameState implements State {
                     //     ent.timer = { ticks: 0 }
                     // });
                     
+                    // clear stateStack;
+                    // stateStack = []
                     stateStack.push(loseState);
                 }
             }
         }
         player.graphic = setHurtBoxGraphic(stage, player.hurtBox.width, player.hurtBox.height);
 
+        let monster = createMonster(this.entities, player.pos.x, player.pos.y, this.layer2);
+
         this.entities.push(player);
+        this.entities.push(monster);
 
         // set up UI
         // let healthBarContainer = new PIXI.Graphics();
