@@ -25,6 +25,22 @@ export class MainMenuState implements State {
         
         let label = BoardhouseUI.CreateWidget();
         label.setText("Start Game");
+        let title = BoardhouseUI.CreateWidget();
+        title.setText("Creatures of the Night", new PIXI.TextStyle({
+            fontFamily: "Arial",
+            fontSize: 52,
+            fill: "white",
+            stroke: '#ff3300',
+            strokeThickness: 4,
+            dropShadow: true,
+            dropShadowColor: "#000000",
+            dropShadowBlur: 4,
+            dropShadowAngle: Math.PI / 6,
+            dropShadowDistance: 6,
+        }));
+        label.appendChild(title);
+        title.top = -100;
+        title.left = -165;
 
         startButton.appendChild(label);
         label.left = 10;
