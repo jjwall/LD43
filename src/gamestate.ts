@@ -23,9 +23,11 @@ export class GameState implements State {
     public layer1: PIXI.Container; // for player
     public layer2: PIXI.Container; // for game objects
     public layer3: PIXI.Container; // for background elements
+    public roadTicker: {ticks: number};
     constructor(stateStack: State[], stage: PIXI.Container){
         this.entities = [];
-        let ents = this.entities;
+        // let ents = this.entities;
+        this.roadTicker = {ticks: 0};
         this.layer1 = new PIXI.Container();
         this.layer2 = new PIXI.Container();
         this.layer3 = new PIXI.Container();
@@ -36,7 +38,7 @@ export class GameState implements State {
         this.layer3.addChild(background);
         // set up entities
         let player = new Entity();
-        player.pos = { x: 0, y: 525 };
+        player.pos = { x: 300, y: 460 };
         player.sprite = setSprite("data/textures/necrowalk1.png", player.pos.x, player.pos.y, this.layer1, 8);
         player.control = initializeControls();
         player.anim = initializeAnimation("walk", necroAnim);
@@ -74,12 +76,16 @@ export class GameState implements State {
                 }
             }
         }
-        player.graphic = setHurtBoxGraphic(stage, player.hurtBox.width, player.hurtBox.height);
+        // player.graphic = setHurtBoxGraphic(stage, player.hurtBox.width, player.hurtBox.height);
 
-        let monster = createMonster(this.entities, player.pos.x, player.pos.y, this.layer2);
+        let monster1 = createMonster(this.entities, player.pos.x, player.pos.y, this.layer2);
+        let monster2 = createMonster(this.entities, player.pos.x, player.pos.y, this.layer2);
+        let monster3 = createMonster(this.entities, player.pos.x, player.pos.y, this.layer2);
 
         this.entities.push(player);
-        this.entities.push(monster);
+        this.entities.push(monster1);
+        this.entities.push(monster2);
+        this.entities.push(monster3);
 
         // set up UI
         // let healthBarContainer = new PIXI.Graphics();
@@ -91,6 +97,17 @@ export class GameState implements State {
         healthBar.drawRect(10,10, 1260, 50);
         healthBar.endFill();
         stage.addChild(healthBar);
+
+        // set road
+        let offsetX = 0;
+        for (let i = 0; i < 9; i++) {
+            let road = new Entity();
+            road.sprite = setSprite("data/textures/road.png", offsetX, 560, this.layer3, 8);
+            road.pos = { x: road.sprite.x, y: road.sprite.y };
+            road.vel = { left: true, right: false, up: false, down: false, speed: 0.3 }
+            this.entities.push(road);
+            offsetX += 160;
+        }
         
         // let label = BoardhouseUI.CreateWidget();
         // label.setText("HP: " + player.health.hitPoints);
@@ -114,7 +131,7 @@ export class GameState implements State {
         spawnHolyKnights(this.entities, this.layer2);
         launchHolyBlasts(this.entities, this.layer1);
         coordinateMonsters(this.entities, this.layer2);
-        spawnBackgroundElements(this.entities, this.layer3);
+        spawnBackgroundElements(this.entities, this.layer3, this.roadTicker);
 
         // clean up entities that are no longer in the scene
         cleanUpEntites(this.entities);

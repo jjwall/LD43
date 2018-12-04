@@ -32,6 +32,7 @@ PIXI.loader
     .add("data/textures/knightwalk2.png")
     .add("data/textures/knightattack1.png")
     .add("data/textures/knightattack2.png")
+    .add("data/textures/road.png")
     .load(function () {
         main(<HTMLElement>document.getElementById("canvasContainer"));
     });

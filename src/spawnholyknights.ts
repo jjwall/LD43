@@ -8,7 +8,7 @@ export function spawnHolyKnights(ents: Entity[], layer: PIXI.Container) {
 
     if (randomNum === 112) {
         let knight = new Entity();
-        knight.pos = { x: 1250, y: 500 }
+        knight.pos = { x: 1250, y: 460 }
         knight.sprite = setSprite("data/textures/knightwalk1.png", knight.pos.x, knight.pos.y, layer, 8);
         knight.anim = initializeAnimation("walk", knightAnim);
         // knight.graphic = setHurtBoxGraphic(layer, knight.sprite.width, knight.sprite.height);
